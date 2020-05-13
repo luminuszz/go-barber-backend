@@ -2,34 +2,34 @@
 
 ## Recuperação de senha
 
-**RF** // Requisitos Funcionais
+### **RF** // Requisitos Funcionais
 
 - [] O usuário deve poder recuperar sua senha informando o seu e-mail
 - [] O usuário deve receber um e-mail com instruções de recuperção de senha;
 - [] O usuário deve poder resetar a senha;
 
-**RNF** // Requisitos não funcionais
+### **RNF** // Requisitos não funcionais
 
 - [] Utilizar o MailTrap para testar envios em ambiente de desenvolvimento;
 - [] Utlizar Amazon SES para envios em produção;
 - [] O envio de e-mails deve acontecer em segundo plano (background job)
 
-**RN** // Regras de negocios
+### ### **RN** // Regras de negocios
 
 - [] O link enviado por email para resetar senha , deve expirar em 2h
 - [] O usuário precisa confirmar uma nova senha para resetar sua senha
 
 ## Atualização do perfil
 
-**RF** // Requisitos Funcionais
+### **RF** // Requisitos Funcionais
 
 - [ ] O usuário deve poder atualizar o seu nome, email e senha
 
-**RNF**// Requisitos Não Funcionais
+### **RNF**// Requisitos Não Funcionais
 
 //....
 
-**RN** // Regras de Negócio
+### **RN** // Regras de Negócio
 
 - [] O usuário não pode alterar seu email para um email já utilizado
 
@@ -39,23 +39,23 @@
 
 ## Painel do prestador
 
-**RF** // Requisitos Funcionais
+### **RF** // Requisitos Funcionais
 
 - [] O usuário deve poder listar os agendamentos de uma dia espécifico;
 
 - [] O prestador deve receber uma notificação sempre que houver um novo agendamento;
 
-  **RNF** // Requisitos não funcionais
+### **RNF** // Requisitos não funcionais
 
-  - [] Os agendamentos do prestador no dia devem ser armazenadas em cache;
+- [] Os agendamentos do prestador no dia devem ser armazenadas em cache;
 
-  - [] As notificações do prestador devem ser armazenadas no Mongodb;
+- [] As notificações do prestador devem ser armazenadas no Mongodb;
 
-  - [] As notificações do prestador devem ser enviadas tem tempo real utilizando Sockt.io;
+- [] As notificações do prestador devem ser enviadas tem tempo real utilizando Sockt.io;
 
-  **RN** // Regras de négocio
+### **RN** // Regras de négocio
 
-  - [] A notificação deve ter um status de lida ou não lida para que o prestador porssa controlar;
+- [] A notificação deve ter um status de lida ou não lida para que o prestador porssa controlar;
 
 ## Agendamento de serviços
 
