@@ -61,26 +61,26 @@
 
 **RF** // Requisitos Funcionais
 
-- [] O usuário deve poder listar todos os prestadores de serviço;
+- [ ] O usuário deve poder listar todos os prestadores de serviço;
 
-- [] O usuário deve poder listar todos os dias de uma mês com pelo menos um horário disponível de um prestador;
+- [ ] O usuário deve poder listar todos os dias de uma mês com pelo menos um horário disponível de um prestador;
 
-- [] O usuário deve poder listar horarios disponiveis em um dia específico de um prestador;
+- [ ] O usuário deve poder listar horarios disponiveis em um dia específico de um prestador;
 
-- [] O usuário deve poder reaalizar um novo agendamento com um prestador;
+- [ ] O usuário deve poder reaalizar um novo agendamento com um prestador;
 
 **RNF** // Requisitos não funcionais
 
-- [] A listagem de prestadores deve ser armazenada em cache;
+- [ ] A listagem de prestadores deve ser armazenada em cache;
 
 **RN** // Regras de négocio
 
-- [] Cada agendamento deve durar 1h extamente;
+- [ ] Cada agendamento deve durar 1h extamente;
 
-- [] Os Agendamentos devem estar disponíveis entre 8h ás 18 h (Primeiro ás 8h , último as 17h);
+- [ ] Os Agendamentos devem estar disponíveis entre 8h ás 18 h (Primeiro ás 8h , último as 17h);
 
-- [] O usuário não pode agendar em um horário já ocupado;
+- [ ] O usuário não pode agendar em um horário já ocupado;
 
-- [] O usuário não pode agendar em horario que já passou;
+- [ ] O usuário não pode agendar em horario que já passou;
 
-- [] O usuário não pode agendar um horário com ele mesmo;
+- [ ] O usuário não pode agendar um horário com ele mesmo;

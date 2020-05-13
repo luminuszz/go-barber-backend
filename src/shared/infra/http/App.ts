@@ -2,7 +2,7 @@ import 'reflect-metadata';
 
 import express from 'express';
 import 'express-async-errors';
-
+import cors from 'cors';
 import { createConnection } from 'typeorm';
 
 import uploadConfig from '@Config/upload';
@@ -27,6 +27,7 @@ class App {
   }
 
   private middlewares(): void {
+    this.express.use(cors());
     this.express.use(express.json());
   }
 
