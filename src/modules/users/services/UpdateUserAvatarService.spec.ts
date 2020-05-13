@@ -39,7 +39,7 @@ describe('UpdateAvatar', () => {
       email: 'daviTeste@gmail.com',
       password: 'TesteDavi',
     };
-    const newUser = await fakeUsersRepository.create(user);
+    await fakeUsersRepository.create(user);
 
     expect(
       updateUserAvatarService.execute({

@@ -48,7 +48,10 @@
   **RNF** // Requisitos não funcionais
 
   - [] Os agendamentos do prestador no dia devem ser armazenadas em cache;
-  - [] As notificações do prestador devem ser armazenadas no Mongodb
+
+  - [] As notificações do prestador devem ser armazenadas no Mongodb;
+
+  - [] As notificações do prestador devem ser enviadas tem tempo real utilizando Sockt.io;
 
   **RN** // Regras de négocio
 
