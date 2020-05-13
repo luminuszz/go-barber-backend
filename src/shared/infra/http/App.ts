@@ -31,7 +31,7 @@ class App {
   }
 
   private routes(): void {
-    this.express.use('/files', express.static(uploadConfig.directory));
+    this.express.use('/files', express.static(uploadConfig.tmpFolder));
     this.express.use(routes);
   }
 
