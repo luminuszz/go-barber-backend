@@ -5,6 +5,7 @@ import authConfig from '@Config/authConfig';
 import User from '@modules/users/infra/typeorm/entities/User';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUserRepository';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface IRequestDTO {
   email: string;
@@ -20,6 +21,8 @@ class CreateSessionService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ email, password }: IRequestDTO): Promise<IResponse> {
@@ -29,7 +32,10 @@ class CreateSessionService {
       throw new AppError('Email or password does not match', 401);
     }
 
-    const passwordDoesMatch = await compare(password, user.password);
+    const passwordDoesMatch = await this.hashProvider.compareHash(
+      password,
+      user.password,
+    );
 
     if (!passwordDoesMatch) {
       throw new AppError('Email or password does not match', 401);

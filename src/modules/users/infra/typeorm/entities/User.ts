@@ -31,10 +31,10 @@ class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @BeforeInsert()
+  /*   @BeforeInsert()
   public async passwordHash(): Promise<void> {
     this.password = await hash(this.password, 8);
-  }
+  } */
 }
 
 export default User;
