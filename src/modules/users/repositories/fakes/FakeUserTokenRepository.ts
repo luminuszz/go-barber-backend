@@ -13,8 +13,18 @@ class FakeUserTokenRepository implements IUserTokenRepository {
       id: uuid(),
       token: uuid(),
       user_id,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     this.userTokens.push(userToken);
+    return userToken;
+  }
+
+  public async findByToken(token: string): Promise<UserToken | undefined> {
+    const userToken = this.userTokens.find(
+      arrayToken => arrayToken.token === token,
+    );
+
     return userToken;
   }
 }
