@@ -29,12 +29,25 @@ class SendForgotPasswordEmailService {
       throw new AppError('User does not exists');
     }
 
-    await this.usersTokenRepository.generate(checkUser.id);
+    const { token } = await this.usersTokenRepository.generate(checkUser.id);
 
-    this.emailProvider.sendEmail(
-      email,
-      'Pedido de recuperação de senha recebido',
-    );
+    const { email: providerEmail, name } = checkUser;
+
+    await this.emailProvider.sendEmail({
+      to: {
+        email: providerEmail,
+        name,
+      },
+
+      subject: '[Miteres] Recuperação de senha ',
+      templateData: {
+        template: 'Olá , {{name}} : {{token}}',
+        variables: {
+          name,
+          token,
+        },
+      },
+    });
   }
 }
 

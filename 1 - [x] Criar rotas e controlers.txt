@@ -1,6 +1,6 @@
 1 - [x] Criar rotas e controlers
 2 - [x] Criar o Repositorio do typeorm (Typorm)
 3 - [x] Criar migration de token
-4 - [] Provider de envio de email (DEV)
-5 - [] Registar proiders no container @shared
-6 - [] Testar tudo
+4 - [x] Provider de envio de email (DEV)
+5 - [x] Registar proiders no container @shared
+6 - [x] Testar tudo
