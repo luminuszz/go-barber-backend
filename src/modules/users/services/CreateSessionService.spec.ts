@@ -4,19 +4,25 @@ import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import CreateSessionService from './CreateSessionService';
 import CreateUserService from './CreateUserService';
 
-describe('CreateSession', () => {
-  it('should be able to create a new Session', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-    const createSessionService = new CreateSessionService(
-      fakeUsersRepository,
-      fakeHashProvider,
-    );
-    const createUserService = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider,
-    );
+let fakeUsersRepository: FakeUsersRepository;
+let fakeHashProvider: FakeHashProvider;
+let createSessionService: CreateSessionService;
+let createUserService: CreateUserService;
 
+describe('CreateSession', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+    createSessionService = new CreateSessionService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+    createUserService = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+    );
+  });
+  it('should be able to create a new Session', async () => {
     const user = await createUserService.execute({
       email: 'daviTeste@dsa.com',
       name: 'daviTeste',
@@ -33,13 +39,6 @@ describe('CreateSession', () => {
   });
 
   it('should not be able to create a new Session if email does not match', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-    const createSessionService = new CreateSessionService(
-      fakeUsersRepository,
-      fakeHashProvider,
-    );
-
     expect(
       createSessionService.execute({
         email: 'daviTesteErrado@dsa.com',
@@ -51,17 +50,6 @@ describe('CreateSession', () => {
   // -----------------------------------------------------//
 
   it('should not be able to create a new Session if password and password Hash does not match', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-    const createSessionService = new CreateSessionService(
-      fakeUsersRepository,
-      fakeHashProvider,
-    );
-    const createUserService = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider,
-    );
-
     await createUserService.execute({
       email: 'daviTeste@dsa.com',
       name: 'daviTeste',
