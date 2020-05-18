@@ -3,11 +3,20 @@ import FakeAppointmentRepository from '../repositories/fakes/FakeAppointmentRepo
 
 import CreateAppointmentService from './CreateAppointmentService';
 
+let fakeAppointmentRepository: FakeAppointmentRepository;
+let createAppointmentService: CreateAppointmentService;
 describe('CreateAppointment', () => {
-  it('should be able to create new appointment', async () => {
-    const fakeAppointmentRepository = new FakeAppointmentRepository();
+  beforeEach(() => {
+    fakeAppointmentRepository = new FakeAppointmentRepository();
 
-    const createAppointmentService = new CreateAppointmentService(
+    createAppointmentService = new CreateAppointmentService(
+      fakeAppointmentRepository,
+    );
+  });
+  it('should be able to create new appointment', async () => {
+    fakeAppointmentRepository = new FakeAppointmentRepository();
+
+    createAppointmentService = new CreateAppointmentService(
       fakeAppointmentRepository,
     );
     const newAppointment = await createAppointmentService.execute({
@@ -19,9 +28,9 @@ describe('CreateAppointment', () => {
     expect(newAppointment.provider_id).toBe('12124545');
   });
   it('should not able to create new appointment in the same date', async () => {
-    const fakeAppointmentRepository = new FakeAppointmentRepository();
+    fakeAppointmentRepository = new FakeAppointmentRepository();
 
-    const createAppointmentService = new CreateAppointmentService(
+    createAppointmentService = new CreateAppointmentService(
       fakeAppointmentRepository,
     );
     const sameDate = new Date(2020, 4, 10, 11);
