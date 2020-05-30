@@ -17,6 +17,15 @@ describe('UpdateProfileService', () => {
       fakeHashProvider,
     );
   });
+  it('should not be able change credentials if user does not exists', async () => {
+    await expect(
+      updateUserProfileService.execute({
+        user_id: 'algo ',
+        name: 'testeoutro',
+        email: 'TesteOutro@gmail.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
   it('should be able change his email and password', async () => {
     const { id: user_id } = await fakeUsersRepository.create({
       name: 'Teste teste',
