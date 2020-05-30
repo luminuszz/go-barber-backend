@@ -3,7 +3,7 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '@Config/authConfig';
 import AppError from '@shared/errors/AppError';
 
-interface DataToken {
+interface IDataToken {
   name: string;
   iat: string;
   exp: number;
@@ -26,7 +26,7 @@ export default function ensureAuth(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
-    const { sub, name } = decoded as DataToken;
+    const { sub, name } = decoded as IDataToken;
 
     request.user = {
       id: sub,
