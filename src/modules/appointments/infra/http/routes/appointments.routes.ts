@@ -3,6 +3,7 @@ import { Router } from 'express';
 import ensureAuth from '@modules/users/infra/http/middlewares/ensureAth';
 import AppointmentsController from '../controllers/AppointmentsController';
 import ProviderAppointmentsController from '../controllers/ProviderAppointmentsController';
+import appointmentValidateIndex from '../validators/appointmentValidate';
 
 const appointmentsRouter = Router();
 const appointmentsController = new AppointmentsController();
@@ -15,7 +16,11 @@ appointmentsRouter.use(ensureAuth);
   return res.json(appointments);
 }); */
 
-appointmentsRouter.post('/', appointmentsController.create);
+appointmentsRouter.post(
+  '/',
+  appointmentValidateIndex,
+  appointmentsController.create,
+);
 appointmentsRouter.get('/me', providerAppointmentsController.index);
 
 export default appointmentsRouter;

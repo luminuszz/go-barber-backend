@@ -1,8 +1,11 @@
 import 'reflect-metadata';
+import { errors } from 'celebrate';
 
 import express from 'express';
 import 'express-async-errors';
+
 import cors from 'cors';
+
 import { createConnections } from 'typeorm';
 
 import uploadConfig from '@Config/upload';
@@ -37,6 +40,7 @@ class App {
   }
 
   globalErrors(): void {
+    this.express.use(errors());
     this.express.use(globalError);
   }
 }
