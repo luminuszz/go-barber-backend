@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
-import { createConnection } from 'typeorm';
+import { createConnections } from 'typeorm';
 
 import uploadConfig from '@Config/upload';
 import globalError from '@shared/errors/globalError';
@@ -23,7 +23,7 @@ class App {
   }
 
   private database(): void {
-    createConnection();
+    createConnections();
   }
 
   private middlewares(): void {
