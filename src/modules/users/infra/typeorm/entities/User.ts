@@ -1,12 +1,12 @@
-import { hash } from 'bcryptjs';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert,
 } from 'typeorm';
+
+import { Exclude, Expose } from 'class-transformer';
 
 @Entity('users')
 class User {
@@ -20,6 +20,7 @@ class User {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column()
@@ -31,10 +32,12 @@ class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  /*   @BeforeInsert()
-  public async passwordHash(): Promise<void> {
-    this.password = await hash(this.password, 8);
-  } */
+  @Expose({ name: 'avatar_url' })
+  getAvatar_url(): string | null {
+    return this.avatar
+      ? `${process.env.APP_API_URL}/files/${this.avatar}`
+      : null;
+  }
 }
 
 export default User;
