@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 const authConfig = {
   jwt: {
-    secret: '75cb73550ab716093c9270f029edae17',
+    secret: process.env.APP_SECRET,
     expiresIn: '7d',
   },
 };
