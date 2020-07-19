@@ -12,11 +12,11 @@ const repositories = {
 };
 
 container.registerSingleton<IUserRepository>(
-  'AppointmentsRepository',
+  'UserRepository',
   repositories.userRepository,
 );
 
 container.registerSingleton<IUserTokensRepository>(
-  'AppointmentsRepository',
+  'UserTokensRepository',
   repositories.userTokensRepository,
 );
