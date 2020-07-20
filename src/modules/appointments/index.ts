@@ -8,6 +8,6 @@ const repositories = {
 };
 
 container.registerSingleton<IAppointmentsRepository>(
-  'AppointmentsRepository',
+  'AppointmentRepository',
   repositories.appointmentRepository,
 );

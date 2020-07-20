@@ -12,7 +12,7 @@ const repositories = {
 };
 
 container.registerSingleton<IUserRepository>(
-  'UserRepository',
+  'UsersRepository',
   repositories.userRepository,
 );
 
