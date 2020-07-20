@@ -11,10 +11,8 @@ class AppointmentsController {
       CreateAppointmentService,
     );
 
-    const parsedDate = parseISO(date);
-
     const appointment = await createAppointmentService.execute({
-      date: parsedDate,
+      date,
       provider_id,
       user_id,
     });
