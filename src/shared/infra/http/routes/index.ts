@@ -15,4 +15,8 @@ routes.use('/password', passwordRouter);
 routes.use('/profile', profileRouter);
 routes.use('/providers', providersRouter);
 
+routes.get('/', function rootHandler(req, res) {
+  res.end('Hello world!');
+});
+
 export default routes;

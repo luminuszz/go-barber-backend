@@ -6,13 +6,16 @@ import { errors } from 'celebrate';
 
 import express from 'express';
 import 'express-async-errors';
+import * as Sentry from '@sentry/node';
 
 import cors from 'cors';
 
 import { createConnections } from 'typeorm';
 
 import uploadConfig from '@Config/upload';
+import listnerConfig from '@Config/listner';
 import globalError from '@shared/errors/globalError';
+import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
 
 import '@shared/container';
@@ -22,10 +25,15 @@ class App {
 
   public constructor() {
     this.express = express();
+    this.listener();
     this.middlewares();
     this.database();
     this.routes();
     this.globalErrors();
+  }
+
+  public listener(): void {
+    Sentry.init(listnerConfig.config);
   }
 
   private database(): void {
@@ -33,8 +41,10 @@ class App {
   }
 
   private middlewares(): void {
+    this.express.use(rateLimiter);
     this.express.use(cors());
     this.express.use(express.json());
+    this.express.use(Sentry.Handlers.requestHandler());
   }
 
   private routes(): void {
@@ -42,7 +52,7 @@ class App {
     this.express.use(routes);
   }
 
-  globalErrors(): void {
+  private globalErrors(): void {
     this.express.use(errors());
     this.express.use(globalError);
   }

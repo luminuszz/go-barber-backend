@@ -1,16 +1,19 @@
 import 'reflect-metadata';
 import ListProviderAppointmentsService from '@modules/appointments/services/ListProviderAppointmentsService';
+import FakeCacheProvider from '@shared/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentRepository';
 
 let listProviderAppointmentsService: ListProviderAppointmentsService;
-
+let fakeCacheProvider: FakeCacheProvider;
 let fakeAppointmentRepository: FakeAppointmentsRepository;
 
 describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
     fakeAppointmentRepository = new FakeAppointmentsRepository();
+    fakeCacheProvider = new FakeCacheProvider();
     listProviderAppointmentsService = new ListProviderAppointmentsService(
       fakeAppointmentRepository,
+      fakeCacheProvider,
     );
   });
   it('should be able to list the the appointments on a specific day', async () => {
