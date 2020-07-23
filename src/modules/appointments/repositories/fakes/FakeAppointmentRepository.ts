@@ -9,6 +9,8 @@ import IFindAllInMouthFromProvider from '@modules/appointments/dtos/IFindAllInMo
 
 import IFindAllInDayFromProviderDTO from '@modules/appointments/dtos/IFindAllInDayFromProviderDTO';
 
+import IFindByDateAppointmentDTO from '@modules/appointments/dtos/IFindByDateAppointmentDTO';
+
 import Appointment from '../../infra/typeorm/entities/Appointments';
 
 class AppointmentsRepository implements IAppointmentRepository {
@@ -28,9 +30,14 @@ class AppointmentsRepository implements IAppointmentRepository {
     return appointement;
   }
 
-  public async findByDate(date: Date): Promise<Appointment | undefined> {
-    const findAppointment = this.appointements.find(appointement =>
-      isEqual(appointement.date, date),
+  public async findByDate({
+    date,
+    provider_id,
+  }: IFindByDateAppointmentDTO): Promise<Appointment | undefined> {
+    const findAppointment = this.appointements.find(
+      appointement =>
+        isEqual(appointement.date, date) &&
+        appointement.provider_id === provider_id,
     );
 
     return findAppointment;
