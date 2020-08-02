@@ -1,8 +1,6 @@
-import AppError from '@shared/errors/AppError';
-
 import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUserRepository';
-
+import { classToClass } from 'class-transformer';
 import ICacheProvider from '@shared/providers/CacheProvider/models/ICacheProvider';
 
 import User from '@modules/users/infra/typeorm/entities/User';
@@ -31,11 +29,9 @@ class ListProviderService {
         except_user_id: user_id,
       });
 
-      console.log('A query no banco foi feita');
-
       await this.cacheProvider.save({
         key: `providers-list:${user_id}`,
-        value: users,
+        value: classToClass(users),
       });
     }
 

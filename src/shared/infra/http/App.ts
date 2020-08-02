@@ -41,14 +41,14 @@ class App {
   }
 
   private middlewares(): void {
-    this.express.use(rateLimiter);
     this.express.use(cors());
     this.express.use(express.json());
     this.express.use(Sentry.Handlers.requestHandler());
   }
 
   private routes(): void {
-    this.express.use('/files', express.static(uploadConfig.tmpFolder));
+    this.express.use('/files', express.static(uploadConfig.uploadsFolder));
+    this.express.use(rateLimiter);
     this.express.use(routes);
   }
 
